@@ -45,6 +45,8 @@ class OpenAIServiceMicrocksTest {
 
     @Test
     void testCorrectResponse() {
+        //If the model is 'gpt-3.5-turbo', it should return a valid answer from the mock service.
+        //Script dispatches a valid response from the openai-api-mock.yaml
         GetAnswerAgent getAnswerAgent = new GetAnswerAgent(microcksUrl, "gpt-3.5-turbo");
         String response = getAnswerAgent.getStraightAnswer(question);
         log.info("Straight Answer: {}", response);
@@ -57,6 +59,8 @@ class OpenAIServiceMicrocksTest {
 
     @Test
     void testModelHallucinate() {
+        //If the model is 'hallucinate', it should return a valid answer from the mock service.
+        //Script dispatches a hallucination response from the openai-api-mock.yaml
         GetAnswerAgent getAnswerAgent = new GetAnswerAgent(microcksUrl, "hallucinate");
         String response = getAnswerAgent.getStraightAnswer(question);
         log.info("Straight Answer: {}", response);
