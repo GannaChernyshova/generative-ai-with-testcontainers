@@ -15,7 +15,7 @@ public class DockerModelRun {
 
     public static void main(String[] args) {
         String baseUrl = "http://localhost:12434/engines/llama.cpp/v1";
-        String modelName = "ai/gemma3"; // Model name
+        String modelName = "ai/gemma3n"; // Model name
 
         // Initialize the Langchain4j OpenAI-compatible model
         OpenAiChatModel model = OpenAiChatModel.builder()
