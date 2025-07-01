@@ -4,9 +4,7 @@ import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import io.restassured.RestAssured;
 import lombok.extern.slf4j.Slf4j;
-import org.testcontainers.containers.DockerModelRunnerContainer;
 
 import java.util.List;
 
