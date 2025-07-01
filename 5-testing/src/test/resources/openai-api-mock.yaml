@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: OpenAI_API
+  version: "1.0"
+  description: Mock OpenAI API for testing
+servers:
+  - url: https://api.openai.com/v1
+paths:
+  /chat/completions:
+    post:
+      summary: Create chat completion
+      description: OpenAI chat completions endpoint
+      operationId: chatCompletions
+      x-microcks-operation:
+        dispatcher: SCRIPT
+        dispatcherRules: |
+          def jsonSlurper = new groovy.json.JsonSlurper()
+          def requestBody = jsonSlurper.parseText(mockRequest.getRequestContent())
+          def modelName = requestBody.model
+          
+          if (modelName == "gpt-3.5-turbo") {
+            return "valid"
+          } else if (modelName == "hallucinate") {
+            return "hallucinate"
+          } else {
+            return "valid"
+          }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model:
+                  type: string
+                messages:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                valid:
+                  summary: Successful chat completion
+                  value:
+                    id: "chatcmpl-123"
+                    object: "chat.completion"
+                    created: 1677652288
+                    model: "gpt-3.5-turbo"
+                    choices:
+                      - index: 0
+                        message:
+                          role: "assistant"
+                          content: "Lewis Hamilton won the 2024 GB GP"
+                        finish_reason: "stop"
+                    usage:
+                      prompt_tokens: 12
+                      completion_tokens: 20
+                      total_tokens: 32
+                hallucinate:
+                  summary: Hallucinate response
+                  value:
+                    id: "cmpl-456"
+                    object: "text_completion"
+                    created: 1677619999
+                    model: "hallucinate"
+                    choices:
+                      - index: 0
+                        message:
+                          role: "assistant"
+                          content: "Lewis Hamilton won the 2024 Galaxy GP driving for USS Enterprise"
+                        finish_reason: "stop"
+                    usage:
+                      prompt_tokens: 12
+                      completion_tokens: 20
+                      total_tokens: 32

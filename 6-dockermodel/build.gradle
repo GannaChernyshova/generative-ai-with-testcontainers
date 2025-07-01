@@ -1,0 +1,11 @@
+group = 'com.example.generativeai.testcontainers'
+version = '0.0.1-SNAPSHOT'
+
+apply plugin: 'application'
+mainClassName = 'com.example.generativeai.testcontainers.Streaming'
+
+dependencies {
+    implementation 'dev.langchain4j:langchain4j-open-ai'
+    implementation 'org.testcontainers:testcontainers:1.21.0'
+    implementation 'io.rest-assured:rest-assured:5.5.1'
+}

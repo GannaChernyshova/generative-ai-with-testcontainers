@@ -1,0 +1,20 @@
+group = 'com.example.generativeai.testcontainers'
+version = '0.0.1-SNAPSHOT'
+
+apply plugin: 'application'
+
+dependencies {
+    implementation 'org.testcontainers:ollama'
+    implementation 'org.testcontainers:postgresql'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:testcontainers'
+    testImplementation 'io.github.microcks:microcks-testcontainers:0.3.0'
+    implementation 'dev.langchain4j:langchain4j'
+    implementation 'dev.langchain4j:langchain4j-pgvector'
+    implementation 'dev.langchain4j:langchain4j-open-ai'
+    implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+}
+
+application {
+    mainClass = 'com.example.generativeai.testcontainers.GetAnswerAgent'
+}
